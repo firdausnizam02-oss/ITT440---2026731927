@@ -192,6 +192,9 @@ Bottlenecks were identified by analyzing which steps in the user journey exhibit
 
 ## 3.3 Spike Test Results with Analysis
 
+<img width="1600" height="671" alt="WhatsApp Image 2026-05-11 at 15 02 01" src="https://github.com/user-attachments/assets/9a9f204e-c2e3-45c3-b6bd-5dfcfa2b6834" />
+<br/>
+
 | Label | Avg Response (ms) | 90th pct (ms) | 95th pct (ms) | 99th pct (ms) | Max (ms) | Error % | Status |
 |-------|-------------------|----------------|----------------|----------------|----------|---------|--------|
 | Homepage | 431.40 | 600.10 | 637.90 | 931.54 | 1057 | 0.00% | ⚠️ High 99th pct |
@@ -200,9 +203,6 @@ Bottlenecks were identified by analyzing which steps in the user journey exhibit
 | Complete Booking | 435.43 | 581.30 | 695.90 | 1033.29 | 1098 | 0.00% | ⚠️ High 95th pct |
 
 ### Overall Statistics
-
-<img width="1600" height="671" alt="WhatsApp Image 2026-05-11 at 15 02 01" src="https://github.com/user-attachments/assets/9a9f204e-c2e3-45c3-b6bd-5dfcfa2b6834" />
-<br/>
 
 | Metric | Value |
 |--------|-------|
