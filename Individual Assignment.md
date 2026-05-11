@@ -24,12 +24,6 @@ Performance testing is a fundamental practice for evaluating the reliability, re
 
 Through these tests, this project aims to identify performance bottlenecks, measure response times, and provide insights into the application's overall stability and capacity for handling real-world usage patterns.
 
-### Main Objectives:
-
-- To evaluate API performance under increasing user load
-- To analyze system behavior under sudden traffic spikes
-- To assess long-term stability through endurance testing
-
 ---
 ## 2.METHODOLOGY
 This section outlines the systematic approach taken to conduct performance testing and bottleneck analysis on the BlazeDemo web application using Apache JMeter. The methodology is divided into five phases: test environment setup, test script development, test scenario design, test execution, and results analysis.
