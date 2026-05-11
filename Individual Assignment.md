@@ -7,6 +7,10 @@
 **Lecturer:** Sir Shahadan Bin Saad
 
 ---
+## YOUTUBE VIDEO
+
+
+---
 
 ## 1. INTRODUCTION
 
@@ -37,7 +41,7 @@ Before conducting any performance tests, the testing environment was properly co
 | :---         |     :---:      |
 | Testing Tool |	Apache JMeter (latest version) |
 |Target Application	| BlazeDemo (https://blazedemo.com) |
-|Operating System |	macOS / Windows / Linux (depending on available setup) |
+|Operating System |	macOS |
 | Network |	Stable internet connection |
 | Listeners	| View Results Tree, Summary Report, Aggregate Report |
 
@@ -68,28 +72,14 @@ Three distinct performance test scenarios were designed to evaluate different as
 
 #### 2.3.1 Load Test - 
 The load test was designed to simulate expected normal operating conditions. The goal was to establish a baseline performance metric.
-     
-| Label | Avg Response (ms) | 90th pct (ms) | 95th pct (ms) | 99th pct (ms) | Max (ms) | Error % | Status |
-|-------|-------------------|----------------|----------------|----------------|----------|---------|--------|
-| Homepage | 374.40 | 443.80 | 489.45 | 884.31 | 1154 | 0.00% | ⚠️ Slowest step |
-| Find Flights | 360.72 | 420.80 | 454.60 | 570.80 | 709 | 0.00% | ✅ Best performance |
-| Choose Flight | 366.45 | 425.90 | 472.60 | 711.89 | 838 | 0.00% | ✅ Good |
-| Complete Booking | 362.47 | 404.00 | 437.85 | 702.62 | 1020 | 0.00% | ✅ Best 90th pct |
 
-### Overall Statistics
-
-| Metric | Value |
-|--------|-------|
-| Total Requests | 1000 |
-| Error Rate | 0.00% ✅ |
-| Average Response | 366.01 ms |
-| Min Response | 292 ms |
-| Max Response | 1154 ms (1.15 sec) |
-| Median | 350.00 ms |
-| 90th Percentile | 421.00 ms |
-| 95th Percentile | 458.95 ms |
-| 99th Percentile | 634.66 ms |
-| Throughput | 7.94 txn/s |
+| Parameter | Value |
+| :--- | :---: |
+| Number of Threads (Users) | 50 |
+| Ramp-Up Period | 60 seconds |
+| Loop Count | 5 |
+| Duration | ~5 minutes |
+| Test Objective | Measure response times, throughput, and error rate under normal load |
 
       
 #### 2.3.2 Stress Test - 
@@ -132,13 +122,18 @@ Before each test, the following steps were performed:
 ### 2.5 Results Collection and Analysis
 During and after each test execution, performance data was collected using JMeter listeners and the generated HTML report. The key performance metrics analyzed included:
 
-| Metric	| Description |
-| :--- | :---: |
-| Average Response Time	| Mean time taken for each request to receive a response |
-| 90th/95th/99th Percentile	| Response time thresholds for the majority of requests | 
-| Throughput	| Number of requests successfully processed per second |
-| Error Rate	| Percentage of failed requests (e.g., HTTP 4xx/5xx errors)| 
-| Standard Deviation	| Variability in response times | 
+| Metric | Description |
+|--------|-------------|
+| Total Requests | Total number of HTTP requests sent during the test |
+| Error Rate | Percentage of failed requests (0% indicates no failures) |
+| Average Response | Mean response time across all requests (good range: <500ms) |
+| Min Response | Fastest recorded response time |
+| Max Response | Slowest recorded response time (acceptable range: <3000ms) |
+| Median | Middle value where 50% of requests are faster and 50% are slower |
+| 90th Percentile | 90% of requests completed faster than this value |
+| 95th Percentile | 95% of requests completed faster than this value |
+| 99th Percentile | 99% of requests completed faster than this value |
+| Throughput | Number of transactions successfully processed per second |
 
 Bottlenecks were identified by analyzing which steps in the user journey exhibited the highest response times or error rates under increasing load. Potential causes such as network latency, server processing limits, or application code inefficiencies were considered.
 
@@ -147,16 +142,36 @@ Bottlenecks were identified by analyzing which steps in the user journey exhibit
 
 ## 3.1 Load Test Results with Analysis
 
-| Label | Avg Response (ms) | 90th pct (ms) | Error % | Status |
-|-------|-------------------|---------------|---------|--------|
-| Homepage | 374.40 | 443.80 | 0.00% | ⚠️ Slowest step |
-| Find Flights | 360.72 | 420.80 | 0.00% | ✅ Good |
-| Choose Flight | 366.45 | 425.90 | 0.00% | ✅ Good |
-| Complete Booking | 362.47 | 404.00 | 0.00% | ✅ Best performance 
+<img width="1600" height="658" alt="WhatsApp Image 2026-05-11 at 14 36 56" src="https://github.com/user-attachments/assets/17788088-6ddd-47cd-b32f-0f8bda74db2b" />
+<br/>
 
-**Conclusion:** The application handled 1000 requests with 0% errors. Average response time was 366ms, which meets acceptable performance standards for a web application.
+| Label | Avg Response (ms) | 90th pct (ms) | 95th pct (ms) | 99th pct (ms) | Max (ms) | Error % | Status |
+|-------|-------------------|----------------|----------------|----------------|----------|---------|--------|
+| Homepage | 374.40 | 443.80 | 489.45 | 884.31 | 1154 | 0.00% | ⚠️ Slowest step |
+| Find Flights | 360.72 | 420.80 | 454.60 | 570.80 | 709 | 0.00% | ✅ Best performance |
+| Choose Flight | 366.45 | 425.90 | 472.60 | 711.89 | 838 | 0.00% | ✅ Good |
+| Complete Booking | 362.47 | 404.00 | 437.85 | 702.62 | 1020 | 0.00% | ✅ Best 90th pct |
+
+### Overall Statistics
+
+| Metric | Value |
+|--------|-------|
+| Total Requests | 1000 |
+| Error Rate | 0.00% ✅ |
+| Average Response | 366.01 ms |
+| Min Response | 292 ms |
+| Max Response | 1154 ms (1.15 sec) |
+| Median | 350.00 ms |
+| 90th Percentile | 421.00 ms |
+| 95th Percentile | 458.95 ms |
+| 99th Percentile | 634.66 ms |
+| Throughput | 7.94 txn/s |
+
 
 ## 3.2 Stress Test Results with Analysis
+
+<img width="1600" height="661" alt="WhatsApp Image 2026-05-11 at 14 47 50" src="https://github.com/user-attachments/assets/98f21c30-7c7e-4692-a973-2cce369912cf" /> 
+<br/>
 
 | Label | Avg Response (ms) | 90th pct (ms) | 95th pct (ms) | 99th pct (ms) | Max (ms) | Error % | Status |
 |-------|-------------------|----------------|----------------|----------------|----------|---------|--------|
@@ -181,7 +196,7 @@ Bottlenecks were identified by analyzing which steps in the user journey exhibit
 | Throughput | 7.77 txn/s |
 
 
-## Spike Test Results with Analysis
+## 3.3 Spike Test Results with Analysis
 
 | Label | Avg Response (ms) | 90th pct (ms) | 95th pct (ms) | 99th pct (ms) | Max (ms) | Error % | Status |
 |-------|-------------------|----------------|----------------|----------------|----------|---------|--------|
@@ -191,6 +206,9 @@ Bottlenecks were identified by analyzing which steps in the user journey exhibit
 | Complete Booking | 435.43 | 581.30 | 695.90 | 1033.29 | 1098 | 0.00% | ⚠️ High 95th pct |
 
 ### Overall Statistics
+
+<img width="1600" height="671" alt="WhatsApp Image 2026-05-11 at 15 02 01" src="https://github.com/user-attachments/assets/9a9f204e-c2e3-45c3-b6bd-5dfcfa2b6834" />
+<br/>
 
 | Metric | Value |
 |--------|-------|
@@ -204,6 +222,7 @@ Bottlenecks were identified by analyzing which steps in the user journey exhibit
 | Throughput | 7.90 txn/s |
 
 
+---
 ## Final Conclusion
 
 ### Summary of All Tests
@@ -241,7 +260,7 @@ Bottlenecks were identified by analyzing which steps in the user journey exhibit
 | **Medium** | Add request queuing | Prevent extreme 4.1s spikes |
 | **Low** | Database query optimization | Improve overall consistency |
 
-### Final Verdict
+## 4. FINAL CONCLUSION
 
 BlazeDemo is a **stable and reliable** web application that maintains **0% error rate** under all tested conditions (load, stress, and spike). The application performs **well under normal load** (366ms average, 635ms at 99th percentile). However, under **stress and spike conditions**, the 99th percentile response times exceed acceptable thresholds (1.02-2.4 seconds), with the **homepage and flight selection** identified as critical bottlenecks.
 
